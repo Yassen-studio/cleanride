@@ -3,497 +3,531 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>CleanRide | Livingston Car Detailing</title>
 
 <style>
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    scroll-behavior: smooth;
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    scroll-behavior:smooth;
 }
 
-:root {
-    --gold: #d4af37;
-    --gold-light: #f5d76e;
-    --black: #050505;
-    --dark: #0c0c0c;
-    --gray: #aaa;
-    --white: #fff;
+body{
+    font-family:Arial, Helvetica, sans-serif;
+    background:#050505;
+    color:white;
+    overflow-x:hidden;
 }
 
-body {
-    font-family: Arial, Helvetica, sans-serif;
-    background: var(--black);
-    color: var(--white);
-    overflow-x: hidden;
+:root{
+    --gold:#d4af37;
+    --gold-light:#f5d76e;
+    --dark:#050505;
+    --card:#101010;
+    --text:#f5f5f5;
+    --muted:#aaa;
 }
 
-/* Background Glow */
-body::before {
-    content: "";
-    position: fixed;
-    width: 500px;
-    height: 500px;
-    background: var(--gold);
-    filter: blur(180px);
-    opacity: .08;
-    top: -150px;
-    left: -150px;
-    z-index: -2;
-    animation: glow 7s infinite alternate;
+/* Background */
+body::before,
+body::after{
+    content:"";
+    position:fixed;
+    width:500px;
+    height:500px;
+    border-radius:50%;
+    filter:blur(120px);
+    opacity:.15;
+    z-index:-1;
 }
 
-body::after {
-    content: "";
-    position: fixed;
-    width: 450px;
-    height: 450px;
-    background: white;
-    filter: blur(200px);
-    opacity: .035;
-    bottom: -150px;
-    right: -150px;
-    z-index: -2;
-    animation: glow 9s infinite alternate-reverse;
+body::before{
+    background:var(--gold);
+    top:-200px;
+    left:-200px;
 }
 
-@keyframes glow {
-    from {
-        transform: translate(0,0) scale(1);
-    }
-
-    to {
-        transform: translate(80px,50px) scale(1.2);
-    }
+body::after{
+    background:#ffffff;
+    bottom:-250px;
+    right:-200px;
 }
 
 /* Navigation */
-nav {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    padding: 20px 7%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background: rgba(5,5,5,.8);
-    backdrop-filter: blur(15px);
-    border-bottom: 1px solid rgba(212,175,55,.15);
-    z-index: 1000;
+nav{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    padding:18px 7%;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    background:rgba(5,5,5,.85);
+    backdrop-filter:blur(15px);
+    border-bottom:1px solid rgba(212,175,55,.15);
+    z-index:1000;
 }
 
-.logo {
-    font-size: 25px;
-    font-weight: bold;
-    color: var(--gold);
-    letter-spacing: 2px;
+.logo{
+    font-size:25px;
+    font-weight:bold;
+    color:var(--gold);
+    letter-spacing:1px;
 }
 
-.logo span {
-    color: white;
+nav ul{
+    display:flex;
+    gap:28px;
+    list-style:none;
 }
 
-nav a {
-    color: #ddd;
-    text-decoration: none;
-    margin-left: 28px;
-    transition: .3s;
+nav a{
+    color:white;
+    text-decoration:none;
+    font-size:14px;
+    transition:.3s;
 }
 
-nav a:hover {
-    color: var(--gold);
+nav a:hover{
+    color:var(--gold);
 }
 
 /* Hero */
-.hero {
-    min-height: 100vh;
-    padding: 150px 7% 80px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
+.hero{
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding:120px 20px 60px;
 }
 
-.hero-content {
-    max-width: 900px;
-    animation: heroIn 1.2s ease;
+.hero-content{
+    max-width:900px;
+    animation:fadeUp 1s ease;
 }
 
-.badge {
-    display: inline-block;
-    padding: 9px 18px;
-    border: 1px solid var(--gold);
-    border-radius: 30px;
-    color: var(--gold-light);
-    font-size: 12px;
-    letter-spacing: 2px;
-    margin-bottom: 25px;
+.badge{
+    display:inline-block;
+    padding:9px 18px;
+    border:1px solid var(--gold);
+    border-radius:30px;
+    color:var(--gold-light);
+    font-size:13px;
+    letter-spacing:1px;
+    margin-bottom:25px;
 }
 
-.hero h1 {
-    font-size: clamp(50px, 8vw, 100px);
-    line-height: .95;
-    margin-bottom: 25px;
+.hero h1{
+    font-size:clamp(48px,8vw,90px);
+    line-height:1;
+    margin-bottom:25px;
 }
 
-.hero h1 span {
-    color: var(--gold);
+.hero h1 span{
+    color:var(--gold);
 }
 
-.hero p {
-    color: var(--gray);
-    font-size: 18px;
-    max-width: 650px;
-    margin: auto;
-    line-height: 1.7;
+.hero p{
+    max-width:650px;
+    margin:auto;
+    color:var(--muted);
+    font-size:18px;
+    line-height:1.7;
 }
 
-.buttons {
-    margin-top: 35px;
+.buttons{
+    margin-top:35px;
+    display:flex;
+    justify-content:center;
+    gap:15px;
+    flex-wrap:wrap;
 }
 
-.btn {
-    display: inline-block;
-    padding: 15px 28px;
-    border-radius: 8px;
-    text-decoration: none;
-    font-weight: bold;
-    margin: 7px;
-    transition: .35s;
+.btn{
+    padding:15px 28px;
+    border-radius:8px;
+    text-decoration:none;
+    font-weight:bold;
+    transition:.3s;
+    display:inline-block;
 }
 
-.btn-gold {
-    background: var(--gold);
-    color: black;
+.btn-gold{
+    background:var(--gold);
+    color:#050505;
 }
 
-.btn-gold:hover {
-    background: var(--gold-light);
-    transform: translateY(-4px);
-    box-shadow: 0 10px 30px rgba(212,175,55,.25);
+.btn-gold:hover{
+    background:var(--gold-light);
+    transform:translateY(-3px);
+    box-shadow:0 10px 30px rgba(212,175,55,.25);
 }
 
-.btn-dark {
-    border: 1px solid #444;
-    color: white;
+.btn-outline{
+    border:1px solid #444;
+    color:white;
 }
 
-.btn-dark:hover {
-    border-color: var(--gold);
-    color: var(--gold);
-    transform: translateY(-4px);
+.btn-outline:hover{
+    border-color:var(--gold);
+    color:var(--gold);
 }
 
 /* Stats */
-.stats {
-    display: flex;
-    justify-content: center;
-    gap: 70px;
-    margin-top: 70px;
-    flex-wrap: wrap;
+.stats{
+    display:flex;
+    justify-content:center;
+    gap:60px;
+    margin-top:60px;
+    flex-wrap:wrap;
 }
 
-.stat h2 {
-    color: var(--gold);
-    font-size: 32px;
+.stat h3{
+    color:var(--gold);
+    font-size:28px;
 }
 
-.stat p {
-    font-size: 13px;
-    color: #777;
+.stat p{
+    font-size:13px;
+    color:#888;
 }
 
 /* Sections */
-section {
-    padding: 100px 7%;
+section{
+    padding:100px 7%;
 }
 
-.section-title {
-    text-align: center;
-    margin-bottom: 55px;
+.section-title{
+    text-align:center;
+    margin-bottom:55px;
 }
 
-.section-title h2 {
-    font-size: 45px;
+.section-title span{
+    color:var(--gold);
+    font-size:13px;
+    letter-spacing:2px;
 }
 
-.section-title span {
-    color: var(--gold);
-}
-
-.section-title p {
-    color: #777;
-    margin-top: 12px;
+.section-title h2{
+    font-size:42px;
+    margin-top:10px;
 }
 
 /* Services */
-.services {
-    display: grid;
-    grid-template-columns: repeat(3,1fr);
-    gap: 25px;
-    max-width: 1100px;
-    margin: auto;
+.services{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:25px;
 }
 
-.card {
-    background: linear-gradient(145deg,#111,#080808);
-    border: 1px solid #222;
-    border-radius: 18px;
-    padding: 35px 28px;
-    transition: .4s;
+.card{
+    background:linear-gradient(145deg,#141414,#090909);
+    padding:35px;
+    border-radius:16px;
+    border:1px solid #222;
+    transition:.4s;
+    position:relative;
+    overflow:hidden;
 }
 
-.card:hover {
-    transform: translateY(-10px);
-    border-color: rgba(212,175,55,.5);
-    box-shadow: 0 20px 50px rgba(0,0,0,.5);
+.card::before{
+    content:"";
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:2px;
+    background:var(--gold);
+    transform:scaleX(0);
+    transition:.4s;
 }
 
-.icon {
-    font-size: 40px;
-    margin-bottom: 20px;
+.card:hover::before{
+    transform:scaleX(1);
 }
 
-.card h3 {
-    color: var(--gold);
-    font-size: 23px;
-    margin-bottom: 12px;
+.card:hover{
+    transform:translateY(-10px);
+    border-color:rgba(212,175,55,.5);
+    box-shadow:0 20px 50px rgba(0,0,0,.5);
 }
 
-.card p {
-    color: #888;
-    line-height: 1.7;
+.card-icon{
+    font-size:40px;
+    margin-bottom:20px;
 }
 
-.price {
-    margin-top: 22px;
-    font-size: 30px;
-    font-weight: bold;
+.card h3{
+    font-size:24px;
+    margin-bottom:12px;
+}
+
+.card p{
+    color:#999;
+    line-height:1.6;
+}
+
+.price{
+    color:var(--gold);
+    font-size:28px;
+    font-weight:bold;
+    margin-top:20px;
+}
+
+/* Why */
+.why{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:25px;
+}
+
+.why-card{
+    text-align:center;
+    padding:35px 20px;
+}
+
+.why-card div{
+    font-size:42px;
+    margin-bottom:15px;
+}
+
+.why-card h3{
+    margin-bottom:10px;
+}
+
+.why-card p{
+    color:#888;
+    line-height:1.6;
 }
 
 /* Location */
-.location-section {
-    background: #080808;
-    text-align: center;
+.location-box{
+    max-width:800px;
+    margin:auto;
+    text-align:center;
+    padding:45px;
+    background:#0d0d0d;
+    border:1px solid #252525;
+    border-radius:18px;
 }
 
-.location-box {
-    max-width: 800px;
-    margin: auto;
-    padding: 45px 30px;
-    background: linear-gradient(145deg,#111,#080808);
-    border: 1px solid rgba(212,175,55,.3);
-    border-radius: 20px;
+.location-box .big{
+    font-size:55px;
+    margin-bottom:15px;
 }
 
-.location-icon {
-    font-size: 55px;
-    margin-bottom: 15px;
+.location-box h3{
+    color:var(--gold);
+    font-size:30px;
+    margin-bottom:15px;
 }
 
-.location-box h3 {
-    font-size: 30px;
-    color: var(--gold);
-    margin-bottom: 15px;
-}
-
-.location-box p {
-    color: #999;
-    line-height: 1.7;
-}
-
-/* Features */
-.features {
-    max-width: 1000px;
-    margin: auto;
-    display: grid;
-    grid-template-columns: repeat(2,1fr);
-    gap: 25px;
-}
-
-.feature {
-    padding: 25px;
-    border: 1px solid #222;
-    border-radius: 15px;
-    background: #0d0d0d;
-    transition: .3s;
-}
-
-.feature:hover {
-    border-color: var(--gold);
-    transform: translateY(-5px);
-}
-
-.feature h3 {
-    color: var(--gold);
-    margin-bottom: 8px;
-}
-
-.feature p {
-    color: #888;
-    line-height: 1.6;
+.location-box p{
+    color:#aaa;
+    line-height:1.7;
 }
 
 /* Booking */
-.booking-box {
-    max-width: 700px;
-    margin: auto;
-    background: linear-gradient(145deg,#111,#080808);
-    border: 1px solid #252525;
-    border-radius: 20px;
-    padding: 40px;
-    box-shadow: 0 20px 70px rgba(0,0,0,.4);
+.booking{
+    max-width:850px;
+    margin:auto;
 }
 
-.notice {
-    padding: 15px;
-    margin-bottom: 25px;
-    border-radius: 10px;
-    background: rgba(212,175,55,.08);
-    border: 1px solid rgba(212,175,55,.25);
-    color: #ddd;
-    text-align: center;
-    font-size: 14px;
+.form{
+    background:#0d0d0d;
+    padding:35px;
+    border-radius:18px;
+    border:1px solid #222;
 }
 
-.form-group {
-    margin-bottom: 18px;
+.form-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:18px;
 }
 
-label {
-    display: block;
-    margin-bottom: 7px;
-    color: #ccc;
-    font-size: 14px;
+.form-group{
+    display:flex;
+    flex-direction:column;
+}
+
+.form-group.full{
+    grid-column:1/-1;
+}
+
+label{
+    margin-bottom:8px;
+    font-size:14px;
+    color:#ddd;
 }
 
 input,
 select,
-textarea {
-    width: 100%;
-    padding: 15px;
-    background: #090909;
-    border: 1px solid #292929;
-    color: white;
-    border-radius: 8px;
-    outline: none;
-    transition: .3s;
-    font-size: 15px;
+textarea{
+    width:100%;
+    padding:14px;
+    background:#070707;
+    color:white;
+    border:1px solid #333;
+    border-radius:8px;
+    outline:none;
+    font-size:14px;
 }
 
 input:focus,
 select:focus,
-textarea:focus {
-    border-color: var(--gold);
-    box-shadow: 0 0 15px rgba(212,175,55,.08);
+textarea:focus{
+    border-color:var(--gold);
 }
 
-textarea {
-    min-height: 120px;
-    resize: vertical;
+textarea{
+    min-height:120px;
+    resize:vertical;
 }
 
-.submit-btn {
-    width: 100%;
-    padding: 17px;
-    border: none;
-    border-radius: 8px;
-    background: var(--gold);
-    color: black;
-    font-size: 16px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: .3s;
+.submit{
+    margin-top:22px;
+    width:100%;
+    padding:16px;
+    border:none;
+    border-radius:8px;
+    background:var(--gold);
+    color:#050505;
+    font-weight:bold;
+    font-size:16px;
+    cursor:pointer;
+    transition:.3s;
 }
 
-.submit-btn:hover {
-    background: var(--gold-light);
-    transform: translateY(-3px);
+.submit:hover{
+    background:var(--gold-light);
+    transform:translateY(-2px);
 }
 
 /* Contact */
-.contact {
-    text-align: center;
-    background: #080808;
+.contact{
+    text-align:center;
 }
 
-.contact p {
-    color: #888;
-    margin: 10px;
+.contact-box{
+    max-width:700px;
+    margin:auto;
+    background:#0d0d0d;
+    border:1px solid #222;
+    border-radius:18px;
+    padding:45px;
 }
 
-.contact strong {
-    color: var(--gold);
+.contact-box p{
+    color:#aaa;
+    margin:14px 0;
+    font-size:16px;
+}
+
+.contact-box strong{
+    color:white;
 }
 
 /* Footer */
-footer {
-    text-align: center;
-    padding: 30px;
-    border-top: 1px solid #1b1b1b;
-    color: #666;
-    font-size: 13px;
+footer{
+    text-align:center;
+    padding:30px 20px;
+    border-top:1px solid #1d1d1d;
+    color:#666;
+    font-size:13px;
 }
 
-footer span {
-    color: var(--gold);
+footer span{
+    color:var(--gold);
 }
 
-/* Animations */
-.reveal {
-    opacity: 0;
-    transform: translateY(40px);
-    transition: 1s ease;
+/* Reveal */
+.reveal{
+    opacity:0;
+    transform:translateY(40px);
+    transition:1s ease;
 }
 
-.reveal.show {
-    opacity: 1;
-    transform: translateY(0);
+.reveal.active{
+    opacity:1;
+    transform:translateY(0);
 }
 
-@keyframes heroIn {
-    from {
-        opacity: 0;
-        transform: translateY(40px);
+/* Animation */
+@keyframes fadeUp{
+    from{
+        opacity:0;
+        transform:translateY(30px);
     }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
+    to{
+        opacity:1;
+        transform:translateY(0);
     }
 }
 
 /* Mobile */
-@media(max-width:800px) {
+@media(max-width:800px){
 
-    nav {
-        padding: 18px 5%;
+    nav{
+        padding:16px 5%;
     }
 
-    nav a {
-        display: none;
+    nav ul{
+        gap:12px;
     }
 
-    .services {
-        grid-template-columns: 1fr;
+    nav a{
+        font-size:12px;
     }
 
-    .features {
-        grid-template-columns: 1fr;
+    .services,
+    .why{
+        grid-template-columns:1fr;
     }
 
-    .stats {
-        gap: 30px;
+    .form-grid{
+        grid-template-columns:1fr;
     }
 
-    section {
-        padding: 75px 5%;
+    .form-group.full{
+        grid-column:auto;
     }
 
-    .booking-box {
-        padding: 25px;
+    section{
+        padding:80px 5%;
+    }
+
+    .section-title h2{
+        font-size:34px;
+    }
+
+    .stats{
+        gap:30px;
+    }
+
+}
+
+@media(max-width:550px){
+
+    nav ul{
+        display:none;
+    }
+
+    .hero h1{
+        font-size:48px;
+    }
+
+    .hero p{
+        font-size:16px;
+    }
+
+    .contact-box,
+    .form{
+        padding:25px;
     }
 }
 </style>
@@ -501,21 +535,21 @@ footer span {
 
 <body>
 
-<!-- NAVIGATION -->
+<!-- Navigation -->
 <nav>
-    <div class="logo">CLEAN<span>RIDE</span></div>
+    <div class="logo">CleanRide</div>
 
-    <div>
-        <a href="#home">Home</a>
-        <a href="#services">Services</a>
-        <a href="#location">Location</a>
-        <a href="#booking">Book</a>
-        <a href="#contact">Contact</a>
-    </div>
+    <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#location">Location</a></li>
+        <li><a href="#book">Book</a></li>
+        <li><a href="#contact">Contact</a></li>
+    </ul>
 </nav>
 
 
-<!-- HERO -->
+<!-- Hero -->
 <section class="hero" id="home">
 
     <div class="hero-content">
@@ -530,17 +564,16 @@ footer span {
         </h1>
 
         <p>
-            Premium car cleaning and detailing
-            serving customers exclusively in
-            Livingston, Calgary, Alberta.
+            Premium car washing and detailing in Livingston, Calgary.
+            We bring the shine back to your ride with professional care.
         </p>
 
         <div class="buttons">
-            <a href="#booking" class="btn btn-gold">
-                Book Your Wash
+            <a href="#book" class="btn btn-gold">
+                Book Your Cleaning
             </a>
 
-            <a href="#services" class="btn btn-dark">
+            <a href="#services" class="btn btn-outline">
                 View Services
             </a>
         </div>
@@ -548,17 +581,17 @@ footer span {
         <div class="stats">
 
             <div class="stat">
-                <h2>100%</h2>
-                <p>Care</p>
+                <h3>3</h3>
+                <p>Premium Services</p>
             </div>
 
             <div class="stat">
-                <h2>3</h2>
-                <p>Packages</p>
+                <h3>100%</h3>
+                <p>Customer Focus</p>
             </div>
 
             <div class="stat">
-                <h2>📍</h2>
+                <h3>📍</h3>
                 <p>Livingston Only</p>
             </div>
 
@@ -569,55 +602,61 @@ footer span {
 </section>
 
 
-<!-- SERVICES -->
-<section id="services">
+<!-- Services -->
+<section id="services" class="reveal">
 
-    <div class="section-title reveal">
-        <h2>Our <span>Services</span></h2>
-        <p>Premium cleaning for your ride.</p>
+    <div class="section-title">
+        <span>WHAT WE OFFER</span>
+        <h2>Our Services</h2>
     </div>
 
     <div class="services">
 
-        <div class="card reveal">
-            <div class="icon">🚗</div>
+        <div class="card">
+
+            <div class="card-icon">🚿</div>
 
             <h3>Basic Wash</h3>
 
             <p>
-                Exterior wash, rinse and dry
-                for a clean everyday look.
+                Exterior wash, rinse, wheels and tire cleaning.
+                Perfect for keeping your vehicle fresh.
             </p>
 
             <div class="price">$60</div>
+
         </div>
 
 
-        <div class="card reveal">
-            <div class="icon">✨</div>
+        <div class="card">
+
+            <div class="card-icon">✨</div>
 
             <h3>Premium Wash</h3>
 
             <p>
-                A deeper clean with extra
-                attention to your vehicle.
+                Everything in the Basic Wash plus interior vacuum,
+                dashboard cleaning and extra detailing.
             </p>
 
             <div class="price">$70</div>
+
         </div>
 
 
-        <div class="card reveal">
-            <div class="icon">👑</div>
+        <div class="card">
+
+            <div class="card-icon">👑</div>
 
             <h3>Ultimate Detail</h3>
 
             <p>
-                Our most complete package
-                for a seriously fresh finish.
+                Complete interior and exterior detailing for a
+                deep, premium clean.
             </p>
 
             <div class="price">$90</div>
+
         </div>
 
     </div>
@@ -625,30 +664,27 @@ footer span {
 </section>
 
 
-<!-- LOCATION -->
-<section class="location-section" id="location">
+<!-- Location -->
+<section id="location" class="reveal">
 
-    <div class="section-title reveal">
-        <h2>Our <span>Service Area</span></h2>
+    <div class="section-title">
+        <span>SERVICE AREA</span>
+        <h2>Where We Work</h2>
     </div>
 
-    <div class="location-box reveal">
+    <div class="location-box">
 
-        <div class="location-icon">📍</div>
+        <div class="big">📍</div>
 
         <h3>Livingston Only</h3>
 
         <p>
-            CleanRide currently provides services
-            exclusively in <strong>Livingston, Calgary,
-            Alberta, Canada.</strong>
+            CleanRide currently provides car cleaning and detailing
+            services in Livingston, Calgary, Alberta.
         </p>
 
-        <br>
-
         <p>
-            Please make sure your booking location
-            is within Livingston before booking.
+            Please make sure your booking address is inside Livingston.
         </p>
 
     </div>
@@ -656,46 +692,53 @@ footer span {
 </section>
 
 
-<!-- WHY CLEANRIDE -->
-<section id="why">
+<!-- Why CleanRide -->
+<section class="reveal">
 
-    <div class="section-title reveal">
-        <h2>Why <span>CleanRide?</span></h2>
-        <p>We care about every detail.</p>
+    <div class="section-title">
+        <span>WHY CLEANRIDE</span>
+        <h2>Built Around Your Car</h2>
     </div>
 
-    <div class="features">
+    <div class="why">
 
-        <div class="feature reveal">
-            <h3>✨ Attention to Detail</h3>
+        <div class="why-card">
+
+            <div>✨</div>
+
+            <h3>Premium Finish</h3>
+
             <p>
-                We focus on the small details
-                that make your vehicle shine.
+                We focus on the details that make your car look its best.
             </p>
+
         </div>
 
-        <div class="feature reveal">
-            <h3>🚘 Professional Service</h3>
+
+        <div class="why-card">
+
+            <div>⚡</div>
+
+            <h3>Easy Booking</h3>
+
             <p>
-                Your vehicle is treated with
-                care from start to finish.
+                Choose your service, date and time and send your booking
+                directly through WhatsApp.
             </p>
+
         </div>
 
-        <div class="feature reveal">
-            <h3>💎 Premium Finish</h3>
-            <p>
-                We aim for a clean, fresh
-                and polished result.
-            </p>
-        </div>
 
-        <div class="feature reveal">
-            <h3>📱 Easy Booking</h3>
+        <div class="why-card">
+
+            <div>📍</div>
+
+            <h3>Local Service</h3>
+
             <p>
-                Book online and send the
-                booking directly through WhatsApp.
+                Proudly serving customers in Livingston, Calgary.
             </p>
+
         </div>
 
     </div>
@@ -703,173 +746,175 @@ footer span {
 </section>
 
 
-<!-- BOOKING -->
-<section id="booking">
+<!-- Booking -->
+<section id="book" class="reveal">
 
-    <div class="section-title reveal">
+    <div class="section-title">
 
-        <h2>Book Your <span>Clean</span></h2>
+        <span>BOOK NOW</span>
 
-        <p>
-            Serving Livingston, Calgary only.
-        </p>
+        <h2>Schedule Your Cleaning</h2>
 
     </div>
 
 
-    <div class="booking-box reveal">
+    <div class="booking">
 
-        <div class="notice">
-            📍 <strong>Service Area:</strong>
-            Livingston, Calgary, Alberta, Canada
-        </div>
+        <form class="form" id="bookingForm">
+
+            <div class="form-grid">
 
 
-        <form id="bookingForm">
+                <div class="form-group">
 
-            <!-- NAME -->
-            <div class="form-group">
+                    <label for="name">
+                        Full Name
+                    </label>
 
-                <label>Your Name</label>
+                    <input
+                        type="text"
+                        id="name"
+                        placeholder="Your name"
+                        required
+                    >
 
-                <input
-                    type="text"
-                    id="name"
-                    placeholder="Enter your name"
-                    required
-                >
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="phone">
+                        Phone Number
+                    </label>
+
+                    <input
+                        type="tel"
+                        id="phone"
+                        placeholder="Your phone number"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="service">
+                        Service
+                    </label>
+
+                    <select id="service" required>
+
+                        <option value="">
+                            Select a service
+                        </option>
+
+                        <option value="Basic Wash - $60">
+                            Basic Wash - $60
+                        </option>
+
+                        <option value="Premium Wash - $70">
+                            Premium Wash - $70
+                        </option>
+
+                        <option value="Ultimate Detail - $90">
+                            Ultimate Detail - $90
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="locationSelect">
+                        Location
+                    </label>
+
+                    <select id="locationSelect" required>
+
+                        <option value="">
+                            Select location
+                        </option>
+
+                        <option value="Livingston, Calgary, Alberta">
+                            Livingston, Calgary, Alberta
+                        </option>
+
+                        <option value="Outside Livingston">
+                            Outside Livingston
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="form-group full">
+
+                    <label for="address">
+                        Address / Area
+                    </label>
+
+                    <input
+                        type="text"
+                        id="address"
+                        placeholder="Your Livingston address"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="date">
+                        Date
+                    </label>
+
+                    <input
+                        type="date"
+                        id="date"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="time">
+                        Preferred Time
+                    </label>
+
+                    <input
+                        type="time"
+                        id="time"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group full">
+
+                    <label for="details">
+                        Extra Details
+                    </label>
+
+                    <textarea
+                        id="details"
+                        placeholder="Tell us anything we should know..."
+                    ></textarea>
+
+                </div>
 
             </div>
 
 
-            <!-- PHONE -->
-            <div class="form-group">
-
-                <label>Your Phone Number</label>
-
-                <input
-                    type="tel"
-                    id="phone"
-                    placeholder="Enter your phone number"
-                    required
-                >
-
-            </div>
-
-
-            <!-- SERVICE -->
-            <div class="form-group">
-
-                <label>Choose Service</label>
-
-                <select id="service" required>
-
-                    <option value="">
-                        Select a service
-                    </option>
-
-                    <option value="Basic Wash - $60">
-                        Basic Wash - $60
-                    </option>
-
-                    <option value="Premium Wash - $70">
-                        Premium Wash - $70
-                    </option>
-
-                    <option value="Ultimate Detail - $90">
-                        Ultimate Detail - $90
-                    </option>
-
-                </select>
-
-            </div>
-
-
-            <!-- LOCATION -->
-            <div class="form-group">
-
-                <label>📍 Booking Location</label>
-
-                <select id="location" required>
-
-                    <option value="">
-                        Select your location
-                    </option>
-
-                    <option value="Livingston, Calgary, Alberta, Canada">
-                        Livingston, Calgary, Alberta, Canada
-                    </option>
-
-                    <option value="Outside Livingston">
-                        Outside Livingston
-                    </option>
-
-                </select>
-
-            </div>
-
-
-            <!-- ADDRESS -->
-            <div class="form-group">
-
-                <label>📍 Address / Area</label>
-
-                <input
-                    type="text"
-                    id="address"
-                    placeholder="Enter your Livingston address or area"
-                    required
-                >
-
-            </div>
-
-
-            <!-- DATE -->
-            <div class="form-group">
-
-                <label>📅 Preferred Date</label>
-
-                <input
-                    type="date"
-                    id="date"
-                    required
-                >
-
-            </div>
-
-
-            <!-- TIME -->
-            <div class="form-group">
-
-                <label>⏰ Preferred Time</label>
-
-                <input
-                    type="time"
-                    id="time"
-                    required
-                >
-
-            </div>
-
-
-            <!-- EXTRA MESSAGE -->
-            <div class="form-group">
-
-                <label>📝 Extra Details</label>
-
-                <textarea
-                    id="message"
-                    placeholder="Anything else we should know?"
-                ></textarea>
-
-            </div>
-
-
-            <button
-                class="submit-btn"
-                type="submit"
-            >
-                📱 Send Booking to WhatsApp
+            <button type="submit" class="submit">
+                📱 Send Booking on WhatsApp
             </button>
 
         </form>
@@ -879,49 +924,59 @@ footer span {
 </section>
 
 
-<!-- CONTACT -->
-<section class="contact" id="contact">
+<!-- Contact -->
+<section id="contact" class="contact reveal">
 
-    <div class="section-title reveal">
+    <div class="section-title">
 
-        <h2>Contact <span>CleanRide</span></h2>
+        <span>GET IN TOUCH</span>
+
+        <h2>Contact CleanRide</h2>
 
     </div>
 
-    <p>
-        📍 <strong>Livingston, Calgary, Alberta</strong>
-    </p>
 
-    <p>
-        📱 WhatsApp:
-        <strong>+1 403-080-71044</strong>
-    </p>
+    <div class="contact-box">
 
-    <p>
-        🚗 Premium car cleaning & detailing
-    </p>
+        <p>
+            📍 <strong>Location:</strong>
+            Livingston, Calgary, Alberta
+        </p>
+
+        <p>
+            📱 <strong>WhatsApp:</strong>
+            +1 403-874-0764
+        </p>
+
+        <p>
+            🚗 <strong>Service:</strong>
+            Premium Car Cleaning & Detailing
+        </p>
+
+    </div>
 
 </section>
 
 
-<!-- FOOTER -->
+<!-- Footer -->
 <footer>
 
     © 2026 <span>CleanRide</span>.
-    Serving Livingston, Calgary.
+    All rights reserved.
 
 </footer>
 
 
 <script>
 
-/* ==============================
-   WHATSAPP BOOKING
-============================== */
+/* WhatsApp number */
+const whatsappNumber = "14038740764";
 
+
+/* Booking form */
 document
 .getElementById("bookingForm")
-.addEventListener("submit", function(event) {
+.addEventListener("submit", function(event){
 
     event.preventDefault();
 
@@ -936,7 +991,7 @@ document
         document.getElementById("service").value;
 
     const location =
-        document.getElementById("location").value;
+        document.getElementById("locationSelect").value;
 
     const address =
         document.getElementById("address").value;
@@ -947,72 +1002,46 @@ document
     const time =
         document.getElementById("time").value;
 
-    const message =
-        document.getElementById("message").value;
+    const details =
+        document.getElementById("details").value;
 
 
-    /* 
-       STOP BOOKINGS OUTSIDE LIVINGSTON
-    */
+    /* Livingston restriction */
 
-    if (location === "Outside Livingston") {
+    if(location === "Outside Livingston"){
 
         alert(
             "Sorry! CleanRide currently only serves Livingston, Calgary, Alberta."
         );
 
         return;
+
     }
 
 
-   
-
-    const whatsappNumber = "14038740764";
-
-
-    /*
-       Booking message
-    */
-
     const bookingMessage =
 
-`🚘 *NEW CLEANRIDE BOOKING*
+`🚗 *NEW CLEANRIDE BOOKING*
 
-━━━━━━━━━━━━━━━━━━
+👤 Customer: ${name}
 
-👤 *Customer*
-${name}
+📱 Customer Phone: ${phone}
 
-📱 *Phone*
-${phone}
+🚿 Service: ${service}
 
-🚗 *Service*
-${service}
+📍 Location: ${location}
 
-📍 *Location*
-${location}
+🏠 Address/Area: ${address}
 
-🏠 *Address / Area*
-${address}
+📅 Date: ${date}
 
-📅 *Date*
-${date}
+⏰ Time: ${time}
 
-⏰ *Time*
-${time}
+📝 Extra Details:
+${details || "None"}
 
-📝 *Extra Details*
-${message || "None"}
+Please confirm this booking.`;
 
-━━━━━━━━━━━━━━━━━━
-
-✨ *CleanRide*
-📍 Livingston, Calgary, Alberta`;
-
-
-    /*
-       Create WhatsApp link
-    */
 
     const whatsappURL =
         "https://wa.me/" +
@@ -1020,10 +1049,6 @@ ${message || "None"}
         "?text=" +
         encodeURIComponent(bookingMessage);
 
-
-    /*
-       Open WhatsApp
-    */
 
     window.open(
         whatsappURL,
@@ -1033,32 +1058,26 @@ ${message || "None"}
 });
 
 
-/* ==============================
-   MINIMUM BOOKING DATE
-============================== */
+/* Prevent booking dates in the past */
 
 const dateInput =
     document.getElementById("date");
 
 const today =
-    new Date()
-    .toISOString()
-    .split("T")[0];
+    new Date().toISOString().split("T")[0];
 
 dateInput.min = today;
 
 
-/* ==============================
-   SCROLL REVEAL
-============================== */
+/* Scroll animations */
 
 const revealElements =
     document.querySelectorAll(".reveal");
 
 
-function revealOnScroll() {
+function revealOnScroll(){
 
-    revealElements.forEach(function(element) {
+    revealElements.forEach(function(element){
 
         const windowHeight =
             window.innerHeight;
@@ -1066,9 +1085,9 @@ function revealOnScroll() {
         const elementTop =
             element.getBoundingClientRect().top;
 
-        if (elementTop < windowHeight - 100) {
+        if(elementTop < windowHeight - 100){
 
-            element.classList.add("show");
+            element.classList.add("active");
 
         }
 
